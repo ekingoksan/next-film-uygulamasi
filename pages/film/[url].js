@@ -21,6 +21,20 @@ export default function FilmDetay({movie}){
     )
 }
 
+export async function getStaticPaths(){
+    const request = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=4ae8bf3f0f2c0f238bdc0d1ec0f5b6c1&language=en-US&page=1`)
+    const movies = await request.json() 
+    const paths = movies.results.map(movie => ({
+        params: {
+            url: movie.id.toString()
+        }
+    }))
+    return {
+        paths,
+        fallback: false
+    }
+}
+
 export async function getStaticProps({params}){
     const request = await fetch(`https://api.themoviedb.org/3/movie/${params.url}?api_key=4ae8bf3f0f2c0f238bdc0d1ec0f5b6c1&language=tr-TR`)
 
