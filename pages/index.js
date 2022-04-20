@@ -32,7 +32,7 @@ export default function index(movies){
     )
 }
 
-export async function getServerSideProps(){
+export async function getStaticProps(){
     const request = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=4ae8bf3f0f2c0f238bdc0d1ec0f5b6c1&language=en-US&page=1`)
     const movies = await request.json() 
     return {

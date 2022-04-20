@@ -21,7 +21,7 @@ export default function FilmDetay({movie}){
     )
 }
 
-export async function getServerSideProps({params}){
+export async function getStaticProps({params}){
     const request = await fetch(`https://api.themoviedb.org/3/movie/${params.url}?api_key=4ae8bf3f0f2c0f238bdc0d1ec0f5b6c1&language=tr-TR`)
 
     const movie = await request.json()
